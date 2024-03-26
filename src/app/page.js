@@ -16,6 +16,21 @@ export default function Home() {
   gsap.to(".box", {x: 360});
   }, { scope: container }); 
 
+  useGSAP(() => {
+    gsap.to(".box", {
+      scrollTrigger: {
+      trigger: '.box',
+      start: "30% center",
+      duration: 1,
+      markers: true,
+      toggleActions: 'play reverse play reverse',
+      },
+      x: "100%",
+      opacity: 0,
+      filter: 'blur(20px)'
+    })
+  });
+
   return (
     <main className={styles.main}>
       <h1>Hello, Next !</h1>
