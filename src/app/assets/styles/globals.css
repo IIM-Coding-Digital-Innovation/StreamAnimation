@@ -9,6 +9,15 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
+  --color-twitch: #6441a5;
+  --color-twitch-op-40: rgba(100, 65, 166, 0.4);
+  --color-twitch-hsl-98: hsl(264, 45%, 98%);
+  --color-twitch-hsl-90: hsl(252, 45%, 90%);
+  --color-twitch-hsl-30: hsl(252, 45%, 30%);
+  /*--color-twitch-h: 252;*/
+  /*--color-twitch-s: 45%;*/
+  /*--color-twitch-l: 50%;*/
+
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
     #16abff33 0deg,
@@ -104,10 +113,4 @@ a {
   html {
     color-scheme: dark;
   }
-}
-
-.box {
-  height: 800px;
-  width: 800px;
-  background-color: red;
 }
