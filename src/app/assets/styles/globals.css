@@ -9,6 +9,19 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
+  --color-white: rgba(255, 255, 255, 0.14);
+  /*--color-twitch: #6441a5;*/
+  --color-twitch: rgba(100, 65, 165, 0.6);
+  --color-twitch-op-40: rgba(100, 65, 166, 0.4);
+  --color-twitch-hsl-98: hsl(264, 45%, 98%);
+  /*--color-twitch-hsl-90: hsl(252, 45%, 90%);*/
+  --color-twitch-hsl-90: hsla(253, 45%, 90%, 0.6);
+  /*--color-twitch-hsl-30: hsl(252, 45%, 30%);*/
+  --color-twitch-hsl-30: hsla(252, 45%, 30%, 0.6);
+  /*--color-twitch-h: 252;*/
+  /*--color-twitch-s: 45%;*/
+  /*--color-twitch-l: 50%;*/
+
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
     #16abff33 0deg,
@@ -104,19 +117,4 @@ a {
   html {
     color-scheme: dark;
   }
-}
-
-.box {
-  height: 800px;
-  width: 800px;
-  background-color: red;
-}
-
-.glass {
-  background: rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9px);
-  -webkit-backdrop-filter: blur(9px);
-  border: 1px solid rgba(255, 255, 255, 0.62);
 }

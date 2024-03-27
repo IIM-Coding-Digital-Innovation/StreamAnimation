@@ -1,0 +1,91 @@
+
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.dot {
+  background-image: radial-gradient(var(--color-twitch-op-40) 12%, transparent 12%);
+  background-position: 12px 12px;
+  background-size: 24px 24px;
+  background-color: var(--color-twitch-hsl-98);
+}
+
+.home {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 20px;
+  width: 85vw;
+  height: 80vh;
+}
+
+.darkPurple {
+  background-color: var(--color-twitch);
+  grid-column: 1;
+  grid-row: 1;
+
+  display: flex;
+  justify-content: center;
+}
+.lightPurple {
+  background-color: var(--color-twitch-hsl-90);
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.purple {
+  background-color: var(--color-white);
+  grid-column: 2;
+  grid-row: 1/3;
+
+  display: flex;
+  justify-content: center;
+}
+.logoTwitch {
+  width: auto;
+  height: 40vh;
+  align-self: center;
+}
+.textTwitch {
+  font-size: 2em;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
+  padding-left: 10px;
+  line-height: 2.5rem;
+}
+.textSubtitle {
+  color: black;
+  padding-left: 10px;
+  align-self: baseline;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.meme {
+  height: auto;
+  width: 100px;
+  padding: 0.5em 0;
+  align-self: center;
+}
+.whatIf {
+  color: var(--color-twitch-hsl-98);
+  font-size: 4rem;
+  align-self: center;
+  font-weight: bold;
+}
+.glass {
+  /*background: rgba(255, 0, 0, 0.14);*/
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /*backdrop-filter: blur(9px);*/
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+}
