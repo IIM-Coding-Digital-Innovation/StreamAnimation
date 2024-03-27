@@ -1,44 +1,27 @@
-'use client'
+"use client"; 
 
-import { useGSAP } from "@gsap/react";
-import styles from "./page.module.css";
-import { gsap} from "gsap";
-import { useRef } from "react";
-import { ScrollTrigger } from "gsap/all";
+import { useState } from 'react';
+import Head from 'next/head';
+import * as Tone from 'tone';
 
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollTrigger);
+export default function TonePlayer() {
+  const [loading, setLoading] = useState(true);
 
-export default function Home() {
-  const circle = useRef();
-  const container = useRef();
-  useGSAP(() => {
-  gsap.to(".box", {x: 360});
-  }, { scope: container }); 
+  const mp3 = 'http://localhost:3000/music.mp3';
 
-  useGSAP(() => {
-    gsap.to(".box", {
-      scrollTrigger: {
-      trigger: '.box',
-      start: "30% center",
-      duration: 1,
-      markers: true,
-      toggleActions: 'play reverse play reverse',
-      },
-      x: "100%",
-      opacity: 0,
-      filter: 'blur(20px)'
-    })
-  });
+  const handleStart = () => {
+    const player = new Tone.Player(mp3).toDestination();
+    player.autostart = true;
+    setLoading(false);
+  };
 
   return (
-    <main className={styles.main}>
-      <h1>Hello, Next !</h1>
-      <div ref={container} className="">
-        <h1 className="text-5xl">HOME PAGE </h1>
-        <a href="/about" className="text-2xl">ABOUT </a>
-        <div ref={circle} className="box">YOLO </div>
-      </div>
-    </main>
+    <div>
+      <Head>
+        <title>Tone Player</title>
+      </Head>
+      <button id="start" onClick={handleStart}>Start</button>
+      &nbsp;<span id="loading">{loading ? 'loading...' : 'loaded'}</span>
+    </div>
   );
 }
