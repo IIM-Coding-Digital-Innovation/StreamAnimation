@@ -86,6 +86,7 @@ body {
 }
 
 body {
+  height: 200dvh;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -111,3 +112,152 @@ a {
   width: 800px;
   background-color: red;
 }
+
+.glass {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+}
+
+.keyboard {
+  position: fixed;
+  bottom: 10px;
+  left: calc(50% - 85px);
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  grid-template-rows: repeat(2, 50px);
+  grid-gap: 6px;
+}
+.keyboard .up,
+.keyboard .left,
+.keyboard .down,
+.keyboard .right {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.keyboard .up {
+  grid-column: 2;
+  grid-row: 1;
+}
+.keyboard .left {
+  grid-column: 1;
+  grid-row: 2;
+}
+.keyboard .down {
+  grid-column: 2;
+  grid-row: 2;
+}
+.keyboard .right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.keyboard .up svg,
+.keyboard .left svg,
+.keyboard .down svg,
+.keyboard .right svg {
+  height: 12px;
+  width: auto;
+  transition: fill .3s;
+}
+
+.keyboard .up.active svg,
+.keyboard .left.active svg,
+.keyboard .down.active svg,
+.keyboard .right.active svg {
+  fill: white;
+}
+
+ .tooltip {
+/*  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: transparent; */
+  position: relative;
+}
+
+.tooltip .tooltip-text {
+  position: absolute;
+  padding: 12px;
+}
+
+.tooltip.tooltip--top .tooltip-text {
+  top: 0;
+  left: 50%;
+  transform: translate3d(-50%, calc(-100% - 12px), 0);
+}
+
+.tooltip.tooltip--right .tooltip-text {
+  right: 0;
+  top: 50%;
+  transform: translate3d( calc(100% + 12px), -50%, 0);
+  margin-left: 12px;
+}
+
+.tooltip.tooltip--left .tooltip-text {
+  left: 0;
+  top: 50%;
+  transform: translate3d(calc(-100% - 12px),  -50%, 0);
+  margin-right: 12px;
+}
+
+.tooltip.tooltip--bottom .tooltip-text {
+  bottom: 0;
+  left: 50%;
+  transform: translate3d(-50%, calc(100% + 12px), 0);
+}
+
+/* .tooltip.tooltip--top .tooltiptext {
+  visibility: hidden;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 6px;
+  z-index: 1;
+} */
+
+/* .tooltip.tooltip--top .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.tooltip.tooltip--right .tooltiptext {
+  visibility: hidden;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100%;
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 6px;
+  z-index: 1;
+} */
+
+/* .tooltip.tooltip--right .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
+} */
