@@ -5,18 +5,43 @@ function Tooltip({ children, text, position = 'top' }) {
 
   useEffect(() => {
     setShow(true);
+    
+    function handleKeyPress(event) {
+        if (KeyToDisable.includes(event.key)) {
+          disableToolTip();
+        }
+        if (event.key === KeyToAbleAgain) {
+            AbleToolTipAgain();
+        }
+    }
+
+    document.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
   }, []);
 
-  let KeyToDisable = ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Escape']
+  const KeyToDisable = ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Escape'];
+  const KeyToAbleAgain = 'Backspace'
 
-  KeyToDisable.forEach(key => {
-    useKey(key, (isKeyPressed) => {
-        disableToolTip(isKeyPressed, key);
+  function disableToolTip() {
+    document.querySelectorAll('.tooltip-text').forEach(tooltip => {
+        tooltip.classList.add('disabled')
+        setTimeout(() => {
+            if (tooltip.classList.contains('disabled')) {
+                tooltip.classList.remove('disabled')
+            }
+        }, 15000);
     });
-  });
- 
-  function disableToolTip(key, isKeyPressed) {
-    console.log(isKeyPressed)
+  }
+
+  function AbleToolTipAgain() {
+    document.querySelectorAll('.tooltip-text').forEach(tooltip => {
+        if (tooltip.classList.contains('disabled')) {
+            tooltip.classList.remove('disabled')
+        }
+    });
   }
 
   return (
