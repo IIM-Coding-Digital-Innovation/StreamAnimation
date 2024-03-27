@@ -1,7 +1,7 @@
 'use client'
 
 import { useGSAP } from "@gsap/react";
-import styles from "./page.module.css";
+import styles from "./assets/styles/page.module.css";
 import { gsap} from "gsap";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
@@ -98,25 +98,15 @@ const KAMETO = [
 ]
 
 export default function Home() {
-  const circle = useRef();
   const container = useRef();
-  useGSAP(() => {
-  gsap.to(".box", {x: 360});
-  }, { scope: container }); 
 
   useGSAP(() => {
-    gsap.to(".box", {
-      scrollTrigger: {
-      trigger: '.box',
-      start: "30% center",
-      duration: 1,
-      toggleActions: 'play reverse play reverse',
-      },
-      x: "100%",
-      opacity: 0,
-      filter: 'blur(20px)'
-    })
-  });
+    gsap.from("#logo_twitch", {x: -360, y: 360, opacity: 0, duration: 0.5});
+    gsap.from("#dark_purple", {x: -360, opacity: 0, duration: 0.5});
+    gsap.from("#light_purple", {x: -360, opacity: 0, duration: 0.5});
+    gsap.from("#what_if", {x: -200, opacity: 0, duration: 0.5, delay: 0.4});
+    gsap.from("#meme", {x: 200, opacity: 0, duration: 0.5, delay: 0.4});
+  }, {scope: container});
 
   useGSAP(() => {
     gsap.to("#children_box p", {
@@ -132,22 +122,39 @@ export default function Home() {
     });
 
     return () => {
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
   return (
-    <>
-      <main className={styles.main}>
-        <h1>Hello, Next !</h1>
-        <div ref={container} className="">
-          <h1 className="text-5xl">HOME PAGE </h1>
-          <a href="/about" className="text-2xl">ABOUT </a>
-          <div ref={circle} className="box">YOLO </div>
+    <main className={styles.background}>
+      <div className={styles.main}>
+        <div className={styles.home} ref={container}>
+          <div id="dark_purple" className={`${styles.glass} ${styles.darkPurple}`}>
+            <p id="what_if" className={styles.whatIf}>
+              What if ?
+            </p>
+          </div>
+          <div id="light_purple" className={`${styles.lightPurple} ${styles.glass}`}>
+            <p className={styles.textTwitch}>
+              Que sont-ils devenus ?
+            </p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img id="meme" className={styles.meme} src="https://clipart-library.com/img1/1326461.png" alt="Meme" />
+            <p className={styles.textSubtitle}>
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
+              Utiliser les touches du clavier.
+            </p>
+          </div>
+          <div className={`${styles.purple} ${styles.glass}`}>
+            <img id={"logo_twitch"} className={styles.logoTwitch}
+                  src={"https://www.edigitalagency.com.au/wp-content/uploads/Twitch-icon-purple.png"}
+            />
+          </div>
         </div>
-      </main>
+      </div>
       {GOTAGA.map( ( { ...props }, index ) => (
-        <div key={index} className={styles.profile} id="parent_box" style={{ height: "100vh" }}>
+        <div key={index} className={`${styles.profile} ${styles.background}`} id="parent_box" style={{ height: "100vh" }}>
           <div className={styles.profile_info} style={{backgroundColor: props.profile.color}}>
             <p className={styles.profile_title}>What If</p>
             <div className={styles.profile_card}>
@@ -172,6 +179,6 @@ export default function Home() {
           <span className={styles.row} style={{backgroundColor: props.profile.color}} />
         </div>
       ) )}
-    </>
+    </main>
   );
 }
