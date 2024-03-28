@@ -9,7 +9,7 @@
   min-width: 100vw;
 }
 
-.dot {
+.background {
   background-image: radial-gradient(var(--color-twitch-op-40) 12%, transparent 12%);
   background-position: 12px 12px;
   background-size: 24px 24px;
@@ -85,7 +85,7 @@
   /*background: rgba(255, 0, 0, 0.14);*/
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  /*backdrop-filter: blur(9px);*/
+  backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.62);
 }
@@ -191,4 +191,108 @@
 .activeItem:focus .fourth,
 .activeItem:focus .fifth {
   filter: grayscale(0%);
+}
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  padding-top: 75px;
+}
+
+.profile_info {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  border-radius: 20px;
+  height: 80vh;
+}
+
+.profile_title {
+  font-family: "Cinzel", serif;
+  font-size: 1.5rem;
+  padding: 1.5rem;
+}
+
+.profile_card {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile_pseudonyme {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.profile_picture {
+  background-color: white;
+  width: 500px;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.profile_information {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.profile_timeline {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin-left: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.box_one,
+.box_two,
+.box_three,
+.box_four,
+.box_five,
+.box_six {
+  width: 45%;
+  height: 20%;
+  padding: 1rem;
+  margin: 32vh 0;
+}
+
+.box_two,
+.box_four,
+.box_six {
+  margin-left: 55%;
+}
+
+.box_year {
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.row {
+  position: absolute;
+  left: 68.65%;
+  width: 4%;
+  /* height: 80vh; */
+  height: calc(100% - 150px);
+
+  transform-origin: top;
+}
+
+.children_box {
+  position: relative;
 }

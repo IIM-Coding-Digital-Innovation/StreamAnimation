@@ -2,13 +2,233 @@
 
 import { useGSAP } from "@gsap/react";
 import styles from "./assets/styles/page.module.css";
-import reset from "./assets/styles/reset.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useState, useEffect, useRef } from 'react';
 import * as Tone from 'tone';
 
 gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
+
+const GOTAGA = [
+  {
+    profile: {
+      pseudonyme: "Gotaga",
+      picture: "https://intrld.com/wp-content/uploads/2021/06/gotaga-twitch.png",
+      name: "Corentin Houssein",
+      age : "30",
+      color: "#C51A26"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
+const KAMETO = [
+  {
+    profile: {
+      pseudonyme: "Kameto",
+      picture: "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2023/3/12/cn2fwwvzlzu2d8c960sp/kameto-commentateur-esport",
+      name: "Kamel Kebir",
+      age : "28",
+      color: "#004687"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
+const AVAMIND = [
+  {
+    profile: {
+      pseudonyme: "Ava Mind",
+      picture: "https://actustream.fr/img/AVA-Mind-organise-tournee-clubs-tant-DJ.jpg",
+      name: "Ava",
+      age : "32",
+      color: "#585FFA"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
+const MISTERMV = [
+  {
+    profile: {
+      pseudonyme: "Mister MV",
+      picture: "https://medias.lequipe.fr/img-photo-jpg/xavier-mister-mv-dang-l-organisateur-de-speedons-timo-verdeil-speedons/1500000001458620/72:177,1745:1293-1200-800-75/85861.jpg",
+      name: "Xavier Dang",
+      age : "43",
+      color: "#E8684B"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
+const MAGHLA = [
+  {
+    profile: {
+      pseudonyme: "Maghla",
+      picture: "https://thumb.canalplus.pro/http/unsafe/1440x810/filters:quality(80)/img-hapi.canalplus.pro:80/ServiceImage/ImageID/113409721",
+      name: "Barbara",
+      age : "30",
+      color: "#6C549C"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
 
 export default function Home() {
   const container = useRef();
@@ -120,9 +340,35 @@ const handleStart = (mp3) => {
   const handleCloseModal = () => {
     setActiveItem(null);
   };
+  useGSAP(() => {
+    gsap.to("#children_box p", {
+      y: -3050,
+      scrollTrigger: {
+          trigger: "#parent_box",
+          start: "top",
+          end: "+=1000",
+          scrub: true,
+          pin: true,
+      }
+    });
+
+    gsap.from("#row", {
+      scaleY: "0",
+      scrollTrigger: {
+        trigger: "#children_box",
+        start: "top-=75px top",
+        end: "bottom+=200px",
+        scrub: true
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   return (
-    <main className={`${styles.dot} ${reset}`}>
+    <main className={styles.background}>
       <div className={styles.main}>
         <div className={styles.home} ref={container}>
           <div id="dark_purple" className={`${styles.glass} ${styles.darkPurple}`}>
@@ -137,7 +383,6 @@ const handleStart = (mp3) => {
             <img id="meme" className={styles.meme} src="https://clipart-library.com/img1/1326461.png" alt="Meme" />
             <p className={styles.textSubtitle}>
               Utiliser les touches du clavier.
-              activeItem: {activeItem}
             </p>
           </div>
           <div className={`${styles.purple} ${styles.glass}`}>
@@ -161,6 +406,32 @@ const handleStart = (mp3) => {
           </div>
         </div>
       </div>
+      {GOTAGA.map( ( { ...props }, index ) => (
+        <div key={index} className={`${styles.profile} ${styles.background}`} id="parent_box" style={{ height: "100vh" }}>
+          <div className={styles.profile_info} style={{backgroundColor: props.profile.color}}>
+            <p className={styles.profile_title}>What If</p>
+            <div className={styles.profile_card}>
+              <p className={styles.profile_pseudonyme}>{props.profile.pseudonyme}</p>
+              <img className={styles.profile_picture} src={props.profile.picture} alt="Picture" />
+            </div>
+            <div className={styles.profile_information}>
+              <div>
+                <p className={styles.profile_name}>{props.profile.name}</p>
+                <p className={styles.profile_age}>{props.profile.age} ans</p>
+              </div>
+            </div>
+          </div>
+          <div className={styles.profile_timeline} id="children_box" style={{ height: "80vh" }}>
+          {props.timeline.map( ( { ...data }, index ) => (
+            <div key={index} className={styles[data.box_number]}>
+              <p className={styles.box_year}>{data.year}</p>
+              <p className={styles.box_text}>{data.text}</p>
+            </div>
+          ) )}
+          <span id="row" className={styles.row} style={{backgroundColor: props.profile.color}} />
+          </div>
+        </div>
+      ) )}
     </main>
   );
 }
