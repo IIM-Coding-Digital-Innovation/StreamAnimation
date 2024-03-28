@@ -97,6 +97,138 @@ const KAMETO = [
   }
 ]
 
+const AVAMIND = [
+  {
+    profile: {
+      pseudonyme: "Ava Mind",
+      picture: "https://actustream.fr/img/AVA-Mind-organise-tournee-clubs-tant-DJ.jpg",
+      name: "Ava",
+      age : "32",
+      color: "#585FFA"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
+const MISTERMV = [
+  {
+    profile: {
+      pseudonyme: "Mister MV",
+      picture: "https://medias.lequipe.fr/img-photo-jpg/xavier-mister-mv-dang-l-organisateur-de-speedons-timo-verdeil-speedons/1500000001458620/72:177,1745:1293-1200-800-75/85861.jpg",
+      name: "Xavier Dang",
+      age : "43",
+      color: "#E8684B"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
+const MAGHLA = [
+  {
+    profile: {
+      pseudonyme: "Maghla",
+      picture: "https://thumb.canalplus.pro/http/unsafe/1440x810/filters:quality(80)/img-hapi.canalplus.pro:80/ServiceImage/ImageID/113409721",
+      name: "Barbara",
+      age : "30",
+      color: "#6C549C"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
 export default function Home() {
   const container = useRef();
 
@@ -113,11 +245,20 @@ export default function Home() {
       y: -3050,
       scrollTrigger: {
           trigger: "#parent_box",
-          start: "top 75",
+          start: "top",
           end: "+=1000",
           scrub: true,
-          markers: true,
           pin: true,
+      }
+    });
+
+    gsap.from("#row", {
+      scaleY: "0",
+      scrollTrigger: {
+        trigger: "#children_box",
+        start: "top-=75px top",
+        end: "bottom+=200px",
+        scrub: true
       }
     });
 
@@ -148,7 +289,7 @@ export default function Home() {
           </div>
           <div className={`${styles.purple} ${styles.glass}`}>
             <img id={"logo_twitch"} className={styles.logoTwitch}
-                  src={"https://www.edigitalagency.com.au/wp-content/uploads/Twitch-icon-purple.png"}
+              src={"https://www.edigitalagency.com.au/wp-content/uploads/Twitch-icon-purple.png"}
             />
           </div>
         </div>
@@ -175,8 +316,8 @@ export default function Home() {
               <p className={styles.box_text}>{data.text}</p>
             </div>
           ) )}
+          <span id="row" className={styles.row} style={{backgroundColor: props.profile.color}} />
           </div>
-          <span className={styles.row} style={{backgroundColor: props.profile.color}} />
         </div>
       ) )}
     </main>

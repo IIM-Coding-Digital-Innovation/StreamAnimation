@@ -95,6 +95,7 @@
   flex-direction: row;
   justify-content: center;
   height: 100vh;
+  padding-top: 75px;
 }
 
 .profile_info {
@@ -184,5 +185,12 @@
   position: absolute;
   left: 68.65%;
   width: 4%;
-  height: 80vh;
+  /* height: 80vh; */
+  height: calc(100% - 150px);
+
+  transform-origin: top;
+}
+
+.children_box {
+  position: relative;
 }
