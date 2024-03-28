@@ -3,6 +3,7 @@ import { useEffect } from "react";
 export const useKey = (key, callback) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
+      console.log(e.code)
       if (e.code === key) {
         // e.preventDefault();
         callback(true);
