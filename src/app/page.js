@@ -22,33 +22,33 @@ const GOTAGA = [
     timeline: [
       {
         box_number: "box_one",
-        year: "2025",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+        year: "2028",
+        text: "Gotaga lance sa propre ligne de vêtements de haute couture, mettant en vedette des motifs inspirés de ses moments épiques de jeu."
       },
       {
         box_number: "box_two",
-        year: "2025",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+        year: "2034",
+        text: "Gotaga obtient le rôle principal dans un biopic épique sur la vie d'un joueur de jeux vidéo, avec Brad Pitt dans le rôle de Squeezie."
       },
       {
         box_number: "box_three",
-        year: "2025",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+        year: "2038",
+        text: "Gotaga lance une chaîne de restaurants où chaque plat est un chef-d'œuvre de précision, conçu en équipe lors de parties endiablées."
       },
       {
         box_number: "box_four",
-        year: "2025",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+        year: "2040",
+        text: "Gotaga décide de prendre une décision surprenante en évinçant les joueurs professionnels de son équipe Valorant, optant plutôt pour une approche familiale en intégrant ses enfants, la G-Corp Family, dans le roster."
       },
       {
         box_number: "box_five",
-        year: "2025",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+        year: "2045",
+        text: "Le chien de Gotaga devient le premier chien à remporter une médaille d'or aux championnats du monde de jeux vidéo canins."
       },
       {
         box_number: "box_six",
-        year: "2025",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+        year: "2050",
+        text: "Gotaga devient le président d'une nation où les décisions politiques sont prises lors de matches de e-sport entre les gouvernements, et où la diplomatie se joue en ligne."
       }
     ]
   }
