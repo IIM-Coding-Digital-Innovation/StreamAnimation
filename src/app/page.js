@@ -252,20 +252,23 @@ export default function Home() {
   // gsap.to(".box", {x: 360});
   // }, { scope: container }); 
 
-  useGSAP(() => {
-    if (isAnimationGo) {
+  useEffect(() => {
+    if (isAnimationGo === true) {
       console.log('ouiiiii')
-  }
-    gsap.from("#logo_twitch", { x: -360, y: 360, opacity: 0, duration: 0.5 });
-    gsap.from("#dark_purple", { x: -360, opacity: 0, duration: 0.5 });
-    gsap.from("#light_purple", { x: -360, opacity: 0, duration: 0.5 });
-    gsap.from("#what_if", { x: -200, opacity: 0, duration: 0.5, delay: 0.4 });
-    gsap.from("#meme", { x: 200, opacity: 0, duration: 0.5, delay: 0.4 });
-    gsap.from("#gotaga", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
-    gsap.from("#kameto", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
-    gsap.from("#mistermv", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
-    gsap.from("#maghla", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
-    gsap.from("#ava", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+      gsap.from("#logo_twitch", { x: -360, y: 360, opacity: 0, duration: 0.5 });
+      gsap.from("#dark_purple", { x: -360, opacity: 0, duration: 0.5 });
+      gsap.from("#light_purple", { x: -360, opacity: 0, duration: 0.5 });
+      gsap.from("#what_if", { x: -200, opacity: 0, duration: 0.5, delay: 0.4 });
+      gsap.from("#meme", { x: 200, opacity: 0, duration: 0.5, delay: 0.4 });
+      gsap.from("#gotaga", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+      gsap.from("#kameto", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+      gsap.from("#mistermv", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+      gsap.from("#maghla", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+      gsap.from("#ava", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+    }
+  }, [isAnimationGo])
+
+  useGSAP(() => {
 
 
     const mp3s = {
@@ -307,150 +310,150 @@ export default function Home() {
     };
   })
 
-    const handleKeyPress = (event) => {
-      console.log('event.key', event.key);
-      switch (event.key) {
-        case 'g':
-          setActiveItem('gotaga');
-          gotagaRef.current.focus();
-          handleStart(mp3s.gotaga);
-          break;
-        case 'k':
-          setActiveItem('kameto');
-          kametoRef.current.focus();
-          handleStart(mp3s.kameto);
-          break;
-        case 'v':
-          setActiveItem('mistermv');
-          setActivePlayer(true);
-          mistermvRef.current.focus();
-          handleStart(mp3s.mistermv);
-          break;
-        case 'm':
-          setActiveItem('maghla');
-          maghlaRef.current.focus();
-          handleStart(mp3s.maghla);
-          break;
-        case 'a':
-          setActiveItem('ava');
-          avaRef.current.focus();
-          handleStart(mp3s.ava);
-          break;
-        default:
-          break;
+  const handleKeyPress = (event) => {
+    console.log('event.key', event.key);
+    switch (event.key) {
+      case 'g':
+        setActiveItem('gotaga');
+        gotagaRef.current.focus();
+        handleStart(mp3s.gotaga);
+        break;
+      case 'k':
+        setActiveItem('kameto');
+        kametoRef.current.focus();
+        handleStart(mp3s.kameto);
+        break;
+      case 'v':
+        setActiveItem('mistermv');
+        setActivePlayer(true);
+        mistermvRef.current.focus();
+        handleStart(mp3s.mistermv);
+        break;
+      case 'm':
+        setActiveItem('maghla');
+        maghlaRef.current.focus();
+        handleStart(mp3s.maghla);
+        break;
+      case 'a':
+        setActiveItem('ava');
+        avaRef.current.focus();
+        handleStart(mp3s.ava);
+        break;
+      default:
+        break;
+    }
+
+  };
+
+  useEffect(() => {
+    document.body.addEventListener('keypress', handleKeyPress);
+
+    return () => {
+      document.body.removeEventListener('keypress', handleKeyPress);
+
+    };
+  }, []);
+
+  const handleCloseModal = () => {
+    setActiveItem(null);
+  };
+  useGSAP(() => {
+    gsap.to("#children_box p", {
+      y: -3050,
+      scrollTrigger: {
+        trigger: "#parent_box",
+        start: "top",
+        end: "+=1000",
+        scrub: true,
+        pin: true,
       }
+    });
 
+    gsap.from("#row", {
+      scaleY: "0",
+      scrollTrigger: {
+        trigger: "#children_box",
+        start: "top-=75px top",
+        end: "bottom+=200px",
+        scrub: true
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
+  }, []);
 
-    useEffect(() => {
-      document.body.addEventListener('keypress', handleKeyPress);
-
-      return () => {
-        document.body.removeEventListener('keypress', handleKeyPress);
-
-      };
-    }, []);
-
-    const handleCloseModal = () => {
-      setActiveItem(null);
-    };
-    useGSAP(() => {
-      gsap.to("#children_box p", {
-        y: -3050,
-        scrollTrigger: {
-          trigger: "#parent_box",
-          start: "top",
-          end: "+=1000",
-          scrub: true,
-          pin: true,
-        }
-      });
-
-      gsap.from("#row", {
-        scaleY: "0",
-        scrollTrigger: {
-          trigger: "#children_box",
-          start: "top-=75px top",
-          end: "bottom+=200px",
-          scrub: true
-        }
-      });
-
-      return () => {
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      };
-    }, []);
-
-    return (
-      <main className={styles.background}>
-        <div className={styles.main}>
-          <div className={styles.home} ref={container}>
-            <div id="dark_purple" className={`${styles.glass} ${styles.darkPurple}`}>
-              <p id="what_if" className={styles.whatIf}>
-                What if ?
-              </p>
-            </div>
-            <div id="light_purple" className={`${styles.lightPurple} ${styles.glass}`}>
-              <p className={styles.textTwitch}>
-                Que sont-ils devenus ?
-              </p>
-              <img id="meme" className={styles.meme} src="https://clipart-library.com/img1/1326461.png" alt="Meme" />
-              <p className={styles.textSubtitle}>
-                Utiliser les touches du clavier.
-              </p>
-            </div>
-            <div className={`${styles.purple} ${styles.glass}`}>
-              <div className={styles.containerTriangle}>
-                <div className={`${activeItem === 'first' ? styles.activeItem : ''}`} ref={gotagaRef} tabIndex="0">
-                  <div id="gotaga" className={styles.first}></div>
-                </div>
-                <div className={`${activeItem === 'second' ? styles.activeItem : ''}`} ref={kametoRef} tabIndex="1">
-                  <div id="kameto" className={styles.second}></div>
-                </div>
-                <div className={`${activeItem === 'third' ? styles.activeItem : ''}`} ref={mistermvRef} tabIndex="2">
-                  <div id="mistermv" className={styles.third}></div>
-                </div>
-                <div className={`${activeItem === 'fourth' ? styles.activeItem : ''}`} ref={maghlaRef} tabIndex="3">
-                  <div id="maghla" className={styles.fourth}></div>
-                </div>
-                <div className={`${activeItem === 'fifth' ? styles.activeItem : ''}`} ref={avaRef} tabIndex="4">
-                  <div id="ava" className={styles.fifth}></div>
-                </div>
+  return (
+    <main className={styles.background}>
+      <div className={styles.main}>
+        <div className={styles.home} ref={container}>
+          <div id="dark_purple" className={`${styles.glass} ${styles.darkPurple}`}>
+            <p id="what_if" className={styles.whatIf}>
+              What if ?
+            </p>
+          </div>
+          <div id="light_purple" className={`${styles.lightPurple} ${styles.glass}`}>
+            <p className={styles.textTwitch}>
+              Que sont-ils devenus ?
+            </p>
+            <img id="meme" className={styles.meme} src="https://clipart-library.com/img1/1326461.png" alt="Meme" />
+            <p className={styles.textSubtitle}>
+              Utiliser les touches du clavier.
+            </p>
+          </div>
+          <div className={`${styles.purple} ${styles.glass}`}>
+            <div className={styles.containerTriangle}>
+              <div className={`${activeItem === 'first' ? styles.activeItem : ''}`} ref={gotagaRef} tabIndex="0">
+                <div id="gotaga" className={styles.first}></div>
+              </div>
+              <div className={`${activeItem === 'second' ? styles.activeItem : ''}`} ref={kametoRef} tabIndex="1">
+                <div id="kameto" className={styles.second}></div>
+              </div>
+              <div className={`${activeItem === 'third' ? styles.activeItem : ''}`} ref={mistermvRef} tabIndex="2">
+                <div id="mistermv" className={styles.third}></div>
+              </div>
+              <div className={`${activeItem === 'fourth' ? styles.activeItem : ''}`} ref={maghlaRef} tabIndex="3">
+                <div id="maghla" className={styles.fourth}></div>
+              </div>
+              <div className={`${activeItem === 'fifth' ? styles.activeItem : ''}`} ref={avaRef} tabIndex="4">
+                <div id="ava" className={styles.fifth}></div>
               </div>
             </div>
           </div>
         </div>
-        {GOTAGA.map(({ ...props }, index) => (
-          <div key={index} className={`${styles.profile} ${styles.background}`} id="parent_box" style={{ height: "100vh" }}>
-            <div className={styles.profile_info} style={{ backgroundColor: props.profile.color }}>
-              <p className={styles.profile_title}>What If</p>
-              <div className={styles.profile_card}>
-                <p className={styles.profile_pseudonyme}>{props.profile.pseudonyme}</p>
-                <img className={styles.profile_picture} src={props.profile.picture} alt="Picture" />
-              </div>
-              <div className={styles.profile_information}>
-                <div>
-                  <p className={styles.profile_name}>{props.profile.name}</p>
-                  <p className={styles.profile_age}>{props.profile.age} ans</p>
-                </div>
-              </div>
+      </div>
+      {GOTAGA.map(({ ...props }, index) => (
+        <div key={index} className={`${styles.profile} ${styles.background}`} id="parent_box" style={{ height: "100vh" }}>
+          <div className={styles.profile_info} style={{ backgroundColor: props.profile.color }}>
+            <p className={styles.profile_title}>What If</p>
+            <div className={styles.profile_card}>
+              <p className={styles.profile_pseudonyme}>{props.profile.pseudonyme}</p>
+              <img className={styles.profile_picture} src={props.profile.picture} alt="Picture" />
             </div>
-            <div className={styles.profile_timeline} id="children_box" style={{ height: "80vh" }}>
-              {props.timeline.map(({ ...data }, index) => (
-                <div key={index} className={styles[data.box_number]}>
-                  <p className={styles.box_year}>{data.year}</p>
-                  <p className={styles.box_text}>{data.text}</p>
-                </div>
-              ))}
-              <span id="row" className={styles.row} style={{ backgroundColor: props.profile.color }} />
+            <div className={styles.profile_information}>
+              <div>
+                <p className={styles.profile_name}>{props.profile.name}</p>
+                <p className={styles.profile_age}>{props.profile.age} ans</p>
+              </div>
             </div>
           </div>
-        ))}
+          <div className={styles.profile_timeline} id="children_box" style={{ height: "80vh" }}>
+            {props.timeline.map(({ ...data }, index) => (
+              <div key={index} className={styles[data.box_number]}>
+                <p className={styles.box_year}>{data.year}</p>
+                <p className={styles.box_text}>{data.text}</p>
+              </div>
+            ))}
+            <span id="row" className={styles.row} style={{ backgroundColor: props.profile.color }} />
+          </div>
+        </div>
+      ))}
 
-        <Keyboard />
-        {/* <Shortcuts /> */}
-        <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} isAnimationGo={isAnimationGo} setIsAnimationGo={setIsAnimationGo} />
-        <ShapeCanvas />
-      </main>
-    );
+      <Keyboard />
+      {/* <Shortcuts /> */}
+      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} isAnimationGo={isAnimationGo} setIsAnimationGo={setIsAnimationGo} />
+      <ShapeCanvas />
+    </main>
+  );
 }

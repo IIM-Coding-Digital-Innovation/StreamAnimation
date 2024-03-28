@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import styles from "../assets/styles/page.module.css";
 import clsx from 'clsx';
 
-const Modal = ({isModalOpen, setIsModalOpen}, {isAnimationGo, setIsAnimationGo}) => {
+const Modal = ({isModalOpen, setIsModalOpen, isAnimationGo, setIsAnimationGo}) => {
   const modalRef = useRef()
   useEffect(() => {
     function handleKeyPress(event) {
