@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from "../assets/styles/page.module.css";
 
 function Tooltip({ children, text, position = 'top' }) {
   const [show, setShow] = useState(true);
@@ -26,7 +27,7 @@ function Tooltip({ children, text, position = 'top' }) {
   const KeyToAbleAgain = 'Backspace'
 
   function disableToolTip() {
-    document.querySelectorAll('.tooltip-text').forEach(tooltip => {
+    document.querySelectorAll('.tooltipText').forEach(tooltip => {
         tooltip.classList.add('disabled')
         setTimeout(() => {
             if (tooltip.classList.contains('disabled')) {
@@ -37,7 +38,7 @@ function Tooltip({ children, text, position = 'top' }) {
   }
 
   function AbleToolTipAgain() {
-    document.querySelectorAll('.tooltip-text').forEach(tooltip => {
+    document.querySelectorAll('.tooltipText').forEach(tooltip => {
         if (tooltip.classList.contains('disabled')) {
             tooltip.classList.remove('disabled')
         }
@@ -45,10 +46,10 @@ function Tooltip({ children, text, position = 'top' }) {
   }
 
   return (
-    <div className={`tooltip tooltip--${position}`}>
+    <div className={`${styles.tooltip} ${styles.tooltip--}${position}`}>
       {children}
       {show && (
-        <div className="tooltip-text glass">
+        <div className={`${styles.tooltipText} ${styles.glass}`}>
           <p>{text}</p>
         </div>
       )}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from "../assets/styles/page.module.css";
 import { useKey } from "../utils/key";
 
 function Shortcuts() {
@@ -28,20 +29,20 @@ function Shortcuts() {
     }
   }
     return(
-      <div className="shortcuts">
-        <div className="link glass" data-key='KeyQ'>
+      <div className={styles.shortcuts}>
+        <div className={`${styles.link} ${styles.glass}`} data-key='KeyQ'>
           <p>Ava Mind</p>
         </div>
-        <div className="link glass" data-key='KeyG'>
+        <div className={`${styles.link} ${styles.glass}`} data-key='KeyG'>
           <p>Gotaga</p>
         </div>
-        <div className="link glass" data-key='KeyK'>
+        <div className={`${styles.link} ${styles.glass}`} data-key='KeyK'>
           <p>Kameto</p>
         </div>
-        <div className="link glass" data-key='KeyV'>
+        <div className={`${styles.link} ${styles.glass}`} data-key='KeyV'>
           <p>Mister MV</p>
         </div>
-        <div className="link glass" data-key='Semicolon'>
+        <div className={`${styles.link} ${styles.glass}`} data-key='Semicolon'>
           <p>Maghla</p>
         </div>
       </div>

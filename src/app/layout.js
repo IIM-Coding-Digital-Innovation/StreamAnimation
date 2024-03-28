@@ -1,5 +1,5 @@
 import { Jost } from "next/font/google";
-import "./globals.css";
+import "../app/assets/styles/page.module.css";
 
 const jost = Jost({ subsets: ["latin"] });
 

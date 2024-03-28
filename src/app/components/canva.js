@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import styles from "../assets/styles/page.module.css";
 
 const ShapeCanvas = () => {
   const canvasRef = useRef(null);
@@ -96,7 +97,7 @@ const ShapeCanvas = () => {
     return () => cancelAnimationFrame(draw);
   }, []);
 
-  return <canvas ref={canvasRef}></canvas>;
+  return <canvas className={styles.canvas} ref={canvasRef}></canvas>;
 };
 
 export default ShapeCanvas;
