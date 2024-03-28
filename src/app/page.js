@@ -1,83 +1,456 @@
-'use client'
+'use client';
 
 import { useGSAP } from "@gsap/react";
-import { useEffect } from "react";
 import styles from "./assets/styles/page.module.css";
 import "./assets/styles/reset.css";
 import { gsap } from "gsap";
-import { useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/all";
 import Tooltip from "./components/tooltip";
 import Modal from "./components/modal";
 import Keyboard from "./components/keyboard";
 import Shortcuts from "./components/shorcuts";
 import ShapeCanvas from "./components/canva";
+import { useState, useEffect, useRef } from 'react';
+import * as Tone from 'tone';
 
 gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
+
+const GOTAGA = [
+  {
+    profile: {
+      pseudonyme: "Gotaga",
+      picture: "https://intrld.com/wp-content/uploads/2021/06/gotaga-twitch.png",
+      name: "Corentin Houssein",
+      age: "30",
+      color: "#C51A26"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2028",
+        text: "Gotaga lance sa propre ligne de vêtements de haute couture, mettant en vedette des motifs inspirés de ses moments épiques de jeu."
+      },
+      {
+        box_number: "box_two",
+        year: "2034",
+        text: "Gotaga obtient le rôle principal dans un biopic épique sur la vie d'un joueur de jeux vidéo, avec Brad Pitt dans le rôle de Squeezie."
+      },
+      {
+        box_number: "box_three",
+        year: "2038",
+        text: "Gotaga lance une chaîne de restaurants où chaque plat est un chef-d'œuvre de précision, conçu en équipe lors de parties endiablées."
+      },
+      {
+        box_number: "box_four",
+        year: "2040",
+        text: "Gotaga décide de prendre une décision surprenante en évinçant les joueurs professionnels de son équipe Valorant, optant plutôt pour une approche familiale en intégrant ses enfants, la G-Corp Family, dans le roster."
+      },
+      {
+        box_number: "box_five",
+        year: "2045",
+        text: "Le chien de Gotaga devient le premier chien à remporter une médaille d'or aux championnats du monde de jeux vidéo canins."
+      },
+      {
+        box_number: "box_six",
+        year: "2050",
+        text: "Gotaga devient le président d'une nation où les décisions politiques sont prises lors de matches de e-sport entre les gouvernements, et où la diplomatie se joue en ligne."
+      }
+    ]
+  }
+]
+
+const KAMETO = [
+  {
+    profile: {
+      pseudonyme: "Kameto",
+      picture: "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2023/3/12/cn2fwwvzlzu2d8c960sp/kameto-commentateur-esport",
+      name: "Kamel Kebir",
+      age: "28",
+      color: "#004687"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
+const AVAMIND = [
+  {
+    profile: {
+      pseudonyme: "Ava Mind",
+      picture: "https://actustream.fr/img/AVA-Mind-organise-tournee-clubs-tant-DJ.jpg",
+      name: "Ava",
+      age: "32",
+      color: "#585FFA"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
+const MISTERMV = [
+  {
+    profile: {
+      pseudonyme: "Mister MV",
+      picture: "https://medias.lequipe.fr/img-photo-jpg/xavier-mister-mv-dang-l-organisateur-de-speedons-timo-verdeil-speedons/1500000001458620/72:177,1745:1293-1200-800-75/85861.jpg",
+      name: "Xavier Dang",
+      age: "43",
+      color: "#E8684B"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
+
+const MAGHLA = [
+  {
+    profile: {
+      pseudonyme: "Maghla",
+      picture: "https://thumb.canalplus.pro/http/unsafe/1440x810/filters:quality(80)/img-hapi.canalplus.pro:80/ServiceImage/ImageID/113409721",
+      name: "Barbara",
+      age: "30",
+      color: "#6C549C"
+    },
+    timeline: [
+      {
+        box_number: "box_one",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_two",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_three",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_four",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_five",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      },
+      {
+        box_number: "box_six",
+        year: "2025",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim sit amet massa efficitur pretium quis sed odio."
+      }
+    ]
+  }
+]
 
 export default function Home() {
   const container = useRef();
   const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isAnimationGo, setIsAnimationGo] = useState(false)
+  const [activeItem, setActiveItem] = useState(false);
+  const [currentMusic, setCurrentMusic] = useState(false);
+  const [activePlayer, setActivePlayer] = useState(false);
+  const gotagaRef = useRef(null);
+  const kametoRef = useRef(null);
+  const mistermvRef = useRef(null);
+  const maghlaRef = useRef(null);
+  const avaRef = useRef(null);
   // useGSAP(() => {
   // gsap.to(".box", {x: 360});
   // }, { scope: container }); 
 
   useGSAP(() => {
+    if (isAnimationGo) {
+      console.log('ouiiiii')
+  }
     gsap.from("#logo_twitch", { x: -360, y: 360, opacity: 0, duration: 0.5 });
     gsap.from("#dark_purple", { x: -360, opacity: 0, duration: 0.5 });
     gsap.from("#light_purple", { x: -360, opacity: 0, duration: 0.5 });
     gsap.from("#what_if", { x: -200, opacity: 0, duration: 0.5, delay: 0.4 });
     gsap.from("#meme", { x: 200, opacity: 0, duration: 0.5, delay: 0.4 });
-  }, { scope: container });
+    gsap.from("#gotaga", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+    gsap.from("#kameto", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+    gsap.from("#mistermv", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+    gsap.from("#maghla", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
+    gsap.from("#ava", { x: 200, opacity: 0, duration: 0.5, delay: 0.6 });
 
-  // useGSAP(() => {
-  //   gsap.to(".box", {
-  //     scrollTrigger: {
-  //     trigger: '.box',
-  //     start: "30% center",
-  //     duration: 1,
-  //     markers: true,
-  //     toggleActions: 'play reverse play reverse',
-  //     },
-  //     x: "100%",
-  //     opacity: 0,
-  //     filter: 'blur(20px)'
-  //   })
-  // });
 
-  return (
-    <main className={`${styles.dot}`}>
-      <div className={styles.main}>
-        <div className={styles.home} ref={container}>
-          <div id="dark_purple" className={`${styles.glass} ${styles.darkPurple}`}>
-            <p id="what_if" className={styles.whatIf}>
-              What if ?
-            </p>
-          </div>
-          <div id="light_purple" className={`${styles.lightPurple} ${styles.glass}`}>
-            {/*<span>*/}
-            <p className={styles.textTwitch}>
-              Que sont-ils devenus ?
-            </p>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img id="meme" className={styles.meme} src="https://clipart-library.com/img1/1326461.png" alt="Meme" />
-            <p className={styles.textSubtitle}>
-              {/* eslint-disable-next-line react/no-unescaped-entities */}
-              Utiliser les touches du clavier.
-            </p>
-            {/*</span>*/}
-          </div>
-          <div className={`${styles.purple} ${styles.glass}`}>
-            <img id={"logo_twitch"} className={styles.logoTwitch}
-              src={"https://www.edigitalagency.com.au/wp-content/uploads/Twitch-icon-purple.png"}
-            />
+    const mp3s = {
+      gotaga: 'gotaga.mp3',
+      kameto: 'kameto.mp3',
+      mistermv: 'mistermv.mp3',
+      maghla: 'maghla.mp3',
+      ava: 'ava.mp3',
+    };
+
+    // let activePlayer = null;
+
+    // useEffect(() => {
+    //   setActivePlayer(true, (activePlayer) => {
+    //     console.log('activePlayer', activePlayer);
+
+    //   })
+    // });
+    // let player = new Tone();
+    let play = false;
+    const handleStart = (mp3) => {
+      let player = new Tone.Player(mp3).toDestination();
+
+      if (!play) {
+        console.log(activePlayer);
+        console.log('other music is playing');
+        player.stop();
+        player.autostart = true;
+        // setActivePlayer(player);
+        setCurrentMusic(mp3);
+        setActivePlayer(true);
+        play = true;
+        console.log(activePlayer);
+      } else {
+        player.stop();
+        setCurrentMusic(null);
+        setActivePlayer(null);
+      }
+    };
+  })
+
+    const handleKeyPress = (event) => {
+      console.log('event.key', event.key);
+      switch (event.key) {
+        case 'g':
+          setActiveItem('gotaga');
+          gotagaRef.current.focus();
+          handleStart(mp3s.gotaga);
+          break;
+        case 'k':
+          setActiveItem('kameto');
+          kametoRef.current.focus();
+          handleStart(mp3s.kameto);
+          break;
+        case 'v':
+          setActiveItem('mistermv');
+          setActivePlayer(true);
+          mistermvRef.current.focus();
+          handleStart(mp3s.mistermv);
+          break;
+        case 'm':
+          setActiveItem('maghla');
+          maghlaRef.current.focus();
+          handleStart(mp3s.maghla);
+          break;
+        case 'a':
+          setActiveItem('ava');
+          avaRef.current.focus();
+          handleStart(mp3s.ava);
+          break;
+        default:
+          break;
+      }
+
+    };
+
+    useEffect(() => {
+      document.body.addEventListener('keypress', handleKeyPress);
+
+      return () => {
+        document.body.removeEventListener('keypress', handleKeyPress);
+
+      };
+    }, []);
+
+    const handleCloseModal = () => {
+      setActiveItem(null);
+    };
+    useGSAP(() => {
+      gsap.to("#children_box p", {
+        y: -3050,
+        scrollTrigger: {
+          trigger: "#parent_box",
+          start: "top",
+          end: "+=1000",
+          scrub: true,
+          pin: true,
+        }
+      });
+
+      gsap.from("#row", {
+        scaleY: "0",
+        scrollTrigger: {
+          trigger: "#children_box",
+          start: "top-=75px top",
+          end: "bottom+=200px",
+          scrub: true
+        }
+      });
+
+      return () => {
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      };
+    }, []);
+
+    return (
+      <main className={styles.background}>
+        <div className={styles.main}>
+          <div className={styles.home} ref={container}>
+            <div id="dark_purple" className={`${styles.glass} ${styles.darkPurple}`}>
+              <p id="what_if" className={styles.whatIf}>
+                What if ?
+              </p>
+            </div>
+            <div id="light_purple" className={`${styles.lightPurple} ${styles.glass}`}>
+              <p className={styles.textTwitch}>
+                Que sont-ils devenus ?
+              </p>
+              <img id="meme" className={styles.meme} src="https://clipart-library.com/img1/1326461.png" alt="Meme" />
+              <p className={styles.textSubtitle}>
+                Utiliser les touches du clavier.
+              </p>
+            </div>
+            <div className={`${styles.purple} ${styles.glass}`}>
+              <div className={styles.containerTriangle}>
+                <div className={`${activeItem === 'first' ? styles.activeItem : ''}`} ref={gotagaRef} tabIndex="0">
+                  <div id="gotaga" className={styles.first}></div>
+                </div>
+                <div className={`${activeItem === 'second' ? styles.activeItem : ''}`} ref={kametoRef} tabIndex="1">
+                  <div id="kameto" className={styles.second}></div>
+                </div>
+                <div className={`${activeItem === 'third' ? styles.activeItem : ''}`} ref={mistermvRef} tabIndex="2">
+                  <div id="mistermv" className={styles.third}></div>
+                </div>
+                <div className={`${activeItem === 'fourth' ? styles.activeItem : ''}`} ref={maghlaRef} tabIndex="3">
+                  <div id="maghla" className={styles.fourth}></div>
+                </div>
+                <div className={`${activeItem === 'fifth' ? styles.activeItem : ''}`} ref={avaRef} tabIndex="4">
+                  <div id="ava" className={styles.fifth}></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <Keyboard />
-      <Shortcuts />
-      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-      <ShapeCanvas />
-    </main>
-  );
+        {GOTAGA.map(({ ...props }, index) => (
+          <div key={index} className={`${styles.profile} ${styles.background}`} id="parent_box" style={{ height: "100vh" }}>
+            <div className={styles.profile_info} style={{ backgroundColor: props.profile.color }}>
+              <p className={styles.profile_title}>What If</p>
+              <div className={styles.profile_card}>
+                <p className={styles.profile_pseudonyme}>{props.profile.pseudonyme}</p>
+                <img className={styles.profile_picture} src={props.profile.picture} alt="Picture" />
+              </div>
+              <div className={styles.profile_information}>
+                <div>
+                  <p className={styles.profile_name}>{props.profile.name}</p>
+                  <p className={styles.profile_age}>{props.profile.age} ans</p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.profile_timeline} id="children_box" style={{ height: "80vh" }}>
+              {props.timeline.map(({ ...data }, index) => (
+                <div key={index} className={styles[data.box_number]}>
+                  <p className={styles.box_year}>{data.year}</p>
+                  <p className={styles.box_text}>{data.text}</p>
+                </div>
+              ))}
+              <span id="row" className={styles.row} style={{ backgroundColor: props.profile.color }} />
+            </div>
+          </div>
+        ))}
+
+        <Keyboard />
+        {/* <Shortcuts /> */}
+        <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} isAnimationGo={isAnimationGo} setIsAnimationGo={setIsAnimationGo} />
+        <ShapeCanvas />
+      </main>
+    );
 }

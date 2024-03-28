@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import styles from "../assets/styles/page.module.css";
 import clsx from 'clsx';
 
-const Modal = ({isModalOpen, setIsModalOpen}) => {
+const Modal = ({isModalOpen, setIsModalOpen}, {isAnimationGo, setIsAnimationGo}) => {
   const modalRef = useRef()
   useEffect(() => {
     function handleKeyPress(event) {
@@ -26,6 +26,7 @@ const Modal = ({isModalOpen, setIsModalOpen}) => {
 
     if (modalElement && keyboardElement) {
       setIsModalOpen(false)
+      setIsAnimationGo(true)
       // modalRef.current.classList.add('disabledModal');
       // keyboardElement.classList.add('normal');
       // document.querySelector('body').style.overflowY = 'auto';
