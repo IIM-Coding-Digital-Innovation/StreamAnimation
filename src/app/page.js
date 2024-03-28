@@ -299,6 +299,10 @@ const handleStart = (mp3) => {
           setActiveItem('gotaga');
           gotagaRef.current.focus();
           handleStart(mp3s.gotaga);
+          const parentBoxElement = document.getElementById('parent_box');
+          if (parentBoxElement) {
+            parentBoxElement.scrollIntoView({ behavior: 'smooth' });
+          }
           break;
         case 'k':
           setActiveItem('kameto');
